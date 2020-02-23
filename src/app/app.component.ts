@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ResourceService } from './resource.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'satisfactory-planner';
+
+  constructor(private resourceService: ResourceService) {}
 }
