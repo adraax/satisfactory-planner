@@ -1,0 +1,173 @@
+{
+  "resources": {
+    //---------- Ores ----------
+    "iron ore": {
+      "from": "miner"
+    },
+    "copper ore": {
+      "from": "miner"
+    },
+    "coal": {
+      "from": "miner"
+    },
+    //---------- Ingots ----------
+    "iron ingot": {
+      "from": "smelter",
+      "rate": 30,
+      "require": [
+        {
+          "item": "iron ore",
+          "quantity": 30
+        }
+      ]
+    },
+    "copper ingot": {
+      "from": "smelter",
+      "rate": 30,
+      "require": [
+        {
+          "item": "copper ore",
+          "quantity": 30
+        }
+      ]
+    },
+    "steel ingot": {
+      "from": "foundry",
+      "rate": 30,
+      "require": [
+        {
+          "item": "iron ore",
+          "quantity": 45
+        },
+        {
+          "item": "coal",
+          "quantity": 45
+        }
+      ]
+    },
+    //---------- Constructor crafted resources ----------
+    "iron plate": {
+      "from": "constructor",
+      "rate": 15,
+      "require": [
+        {
+          "item": "iron ingot",
+          "quantity": 30
+        }
+      ]
+    },
+    "iron rod": {
+      "from": "constructor",
+      "rate": 15,
+      "require": [
+        {
+          "item": "iron ingot",
+          "quantity": 15
+        }
+      ]
+    },
+    "screw": {
+      "from": "constructor",
+      "rate": 90,
+      "require": [
+        {
+          "item": "iron rod",
+          "quantity": 15
+        }
+      ]
+    },
+    "wire": {
+      "from": "constructor",
+      "rate": 45,
+      "require": [
+        {
+          "item": "copper ingot",
+          "quantity": 15
+        }
+      ]
+    },
+    "steel pipe": {
+      "from": "constructor",
+      "rate": 15,
+      "require": [
+        {
+          "item": "steel ingot",
+          "quantity": 15
+        }
+      ]
+    },
+    //---------- Assembler crafted resources ----------
+    "rotor": {
+      "from": "assembler",
+      "rate": 6,
+      "require": [
+        {
+          "item": "iron rod",
+          "quantity": 18
+        },
+        {
+          "item": "screw",
+          "quantity": 132
+        }
+      ]
+    },
+    "stator": {
+      "from": "assembler",
+      "rate": 6,
+      "require": [
+        {
+          "item": "steel pipe",
+          "quantity": 18
+        },
+        {
+          "item": "wire",
+          "quantity": 60
+        }
+      ]
+    },
+    "motor": {
+      "from": "assembler",
+      "rate": 5,
+      "require": [
+        {
+          "item": "rotor",
+          "quantity": 10
+        },
+        {
+          "item": "stator",
+          "quantity": 10
+        }
+      ]
+    }
+  },
+  "miner": {
+    "tiers": {
+      "Mk I": {
+        "rate": 60,
+        "energy": 5
+      },
+      "Mk II": {
+        "rate": 120,
+        "energy": 12
+      },
+      "Mk III": {
+        "rate": 240,
+        "energy": 30
+      }
+    }
+  },
+  "buildings": {
+    "smelter": {
+      "energy": 4
+    },
+    "foundry": {
+      "energy": 16
+    },
+    "constructor": {
+      "energy": 4
+    },
+    "assembler": {
+      "energy": 15
+    }
+  }
+}
