@@ -65,7 +65,7 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
           # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
           eval $(ssh-agent -s)
-          ssh-add <(echo $SSH_PRIVATE_KEY)
+          ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
           # log into Docker registry
           ssh deployer@adraax.eu "docker login -u adraax -p $CI_DOCKER_PULL docker.pkg.github.com"
           # stop container, remove image.
