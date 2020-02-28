@@ -61,7 +61,7 @@ jobs:
           CI_DOCKER_PULL: ${{ secrets.CI_DOCKER_PULL }}
         run: |
           mkdir ~/.ssh
-          echo $SSH_KNOWN_HOSTS >> ~/.ssh/known_hosts
+          (echo "$SSH_KNOWN_HOSTS" | base64 -d) >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
           # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
           eval $(ssh-agent -s)
