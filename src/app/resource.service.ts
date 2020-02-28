@@ -8,6 +8,7 @@ export class ResourceService {
 
   constructor() {
     /* this.resources = require('./resources.jsonc');
-    console.log(this.resources); */
+    console.log(this.resources);
+    */
   }
 }
