@@ -67,7 +67,7 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
           # log into Docker registry
-          ssh deployer@adraax.eu "docker login -u adraax -p $CI_DOCKER_PULL docker.pkg.github.com"
+          ssh deployer@adraax.eu " echo $CI_DOCKER_PULL | docker login docker.pkg.github.com -u adraax --password-stdin"
           # stop container, remove image.
           ssh deployer@adraax.eu "cd /opt/traefik; docker-compose stop satisfactory-planner" || true
           # pull latest image
