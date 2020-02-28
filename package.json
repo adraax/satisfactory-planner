@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "generate-resources": "node generate-resources.js",
+    "build:prod": "node generate-resources.js && ng build --prod",
+    "build":"ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

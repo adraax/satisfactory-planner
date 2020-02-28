@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResourceService {
-  private resources;
+  private resources = new BehaviorSubject({});
 
-  constructor() {
-    /* this.resources = require('./resources.jsonc');
-    console.log(this.resources);
-    */
+  constructor(private httpClient: HttpClient) {
+    this.httpClient.get('/assets/resources.json').subscribe((data: any) => this.resources.next(data));
+  }
+
+  getResources() {
+   return this.resources;
   }
 }
