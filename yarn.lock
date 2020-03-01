@@ -5388,6 +5388,13 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
+ngx-mat-select-search@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-mat-select-search/-/ngx-mat-select-search-2.1.1.tgz#ca7e1a73a840522f087f2569dbeba8533588bd98"
+  integrity sha512-yDW+EProSwybomlhXLE6nnw56UGHrJ4Qy0ASrbo3ZHNzPUe+q4xT3wevLHqy8IcgLs6IO6d0NNDX44T5vOMIAQ==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

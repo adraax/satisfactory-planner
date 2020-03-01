@@ -10,6 +10,9 @@
     "coal": {
       "from": "miner"
     },
+    "limestone": {
+      "from": "miner"
+    },
     //---------- Ingots ----------
     "iron ingot": {
       "from": "smelter",
@@ -46,9 +49,19 @@
       ]
     },
     //---------- Constructor crafted resources ----------
-    "iron plate": {
+    "concrete": {
       "from": "constructor",
       "rate": 15,
+      "require": [
+        {
+          "item": "limestone",
+          "quantity": 45
+        }
+      ]
+    },
+    "iron plate": {
+      "from": "constructor",
+      "rate": 20,
       "require": [
         {
           "item": "iron ingot",
@@ -68,17 +81,17 @@
     },
     "screw": {
       "from": "constructor",
-      "rate": 90,
+      "rate": 40,
       "require": [
         {
           "item": "iron rod",
-          "quantity": 15
+          "quantity": 10
         }
       ]
     },
     "wire": {
       "from": "constructor",
-      "rate": 45,
+      "rate": 30,
       "require": [
         {
           "item": "copper ingot",
@@ -88,40 +101,40 @@
     },
     "steel pipe": {
       "from": "constructor",
-      "rate": 15,
+      "rate": 20,
       "require": [
         {
           "item": "steel ingot",
-          "quantity": 15
+          "quantity": 30
         }
       ]
     },
     //---------- Assembler crafted resources ----------
     "rotor": {
       "from": "assembler",
-      "rate": 6,
+      "rate": 4,
       "require": [
         {
           "item": "iron rod",
-          "quantity": 18
+          "quantity": 20
         },
         {
           "item": "screw",
-          "quantity": 132
+          "quantity": 100
         }
       ]
     },
     "stator": {
       "from": "assembler",
-      "rate": 6,
+      "rate": 5,
       "require": [
         {
           "item": "steel pipe",
-          "quantity": 18
+          "quantity": 15
         },
         {
           "item": "wire",
-          "quantity": 60
+          "quantity": 40
         }
       ]
     },
@@ -136,6 +149,71 @@
         {
           "item": "stator",
           "quantity": 10
+        }
+      ]
+    },
+    "modular frame": {
+      "from": "assembler",
+      "rate": 2,
+      "require": [
+        {
+          "item": "reinforced iron plate",
+          "quantity": 3
+        },
+        {
+          "item": "iron rod",
+          "quantity": 12
+        }
+      ]
+    },
+    "reinforced iron plate": {
+      "from": "assembler",
+      "rate": 5,
+      "require": [
+        {
+          "item": "iron plate",
+          "quantity": 30
+        },
+        {
+          "item": "screw",
+          "quantity": 60
+        }
+      ]
+    },
+    "encased industrial beam": {
+      "from": "assembler",
+      "rate": 6,
+      "require": [
+        {
+          "item": "steel beam",
+          "quantity": 24
+        },
+        {
+          "item": "concrete",
+          "quantity": 30
+        }
+      ]
+    },
+    //---------- Manufacturer crafted resources ----------
+    "heavy modular frame": {
+      "from": "manufacturer",
+      "rate": 2,
+      "require": [
+        {
+          "item": "modular frame",
+          "quantity": 5
+        },
+        {
+          "item": "steel pipe",
+          "quantity": 15
+        },
+        {
+          "item": "encased industrial beam",
+          "quantity": 5
+        },
+        {
+          "item": "screw",
+          "quantity": 100
         }
       ]
     }
@@ -168,6 +246,9 @@
     },
     "assembler": {
       "energy": 15
+    },
+    "manufacturer": {
+      "energy": 55
     }
   }
 }

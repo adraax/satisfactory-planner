@@ -1,7 +1,21 @@
 <mat-toolbar color="primary">Satisfactory Planner</mat-toolbar>
-<div fxLayout="row">
+<div fxLayout="row" class="outer">
   <div fxFlex="50">
-    Left panel
+    <mat-form-field>
+      <mat-select [formControl]="resourceCtrl" placeholder="resource" #singleSelect>
+        <mat-option>
+          <ngx-mat-select-search [formControl]="resourceFilterCtrl"  placeholderLabel="Find resource..."></ngx-mat-select-search>
+        </mat-option>
+        <mat-option *ngFor="let resource of filteredresources | async" [value]="resource">
+          {{resource | titlecase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Resource Number</mat-label>
+      <input matInput [formControl]="resourceNumberCtrl" placeholder="Resource Number" type="number" #number>
+    </mat-form-field>
+    <button mat-button (click)="calculate()">calculate</button>
   </div>
   <div fxFlex>
     right panel
