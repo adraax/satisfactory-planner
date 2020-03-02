@@ -12,5 +12,5 @@ COPY . ./
 RUN yarn build:prod
 
 FROM nginx
-# COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY --from=compile-image /opt/ng/dist/satisfactory-planner /usr/share/nginx/html
