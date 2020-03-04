@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node generate-resources.js && ng serve",
     "generate-resources": "node generate-resources.js",
     "build:prod": "node generate-resources.js && ng build --prod",
     "build": "ng build",

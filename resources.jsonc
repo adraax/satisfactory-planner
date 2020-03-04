@@ -36,15 +36,15 @@
     },
     "steel ingot": {
       "from": "foundry",
-      "rate": 30,
+      "rate": 180,
       "require": [
         {
           "item": "iron ore",
-          "quantity": 45
+          "quantity": 180
         },
         {
           "item": "coal",
-          "quantity": 45
+          "quantity": 180
         }
       ]
     },
@@ -106,6 +106,16 @@
         {
           "item": "steel ingot",
           "quantity": 30
+        }
+      ]
+    },
+    "steel beam": {
+      "from": "constructor",
+      "rate": 15,
+      "require": [
+        {
+          "item": "steel ingot",
+          "quantity": 60
         }
       ]
     },

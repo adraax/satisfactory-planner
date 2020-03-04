@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { MatSelect } from "@angular/material/select";
 import { MatInput } from "@angular/material/input";
+import { MatSelect } from "@angular/material/select";
 import { ReplaySubject, Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { ResourceService } from "./resource.service";
@@ -11,7 +11,7 @@ import { ResourceService } from "./resource.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = "satisfactory-planner";
   resources = [];
   resourcesName = [];
@@ -28,10 +28,10 @@ export class AppComponent implements OnInit {
   public filteredresources: ReplaySubject<any> = new ReplaySubject<any>(1);
 
   @ViewChild("singleSelect", { static: true }) singleSelect: MatSelect;
-  @ViewChild("singleSelect", { static: true }) numberInput: MatInput;
+  @ViewChild("numberInput", { static: true }) numberInput: MatInput;
 
   /** Subject that emits when the component has been destroyed. */
-  protected _onDestroy = new Subject<void>();
+  protected onDestroy = new Subject<void>();
 
   constructor(private resourceService: ResourceService) {}
 
@@ -45,6 +45,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.onDestroy.next();
+  }
+
   initSelect() {
     this.resourceCtrl.setValue(this.resourcesName.sort());
     this.resourceNumberCtrl.setValue(1);
@@ -52,7 +56,7 @@ export class AppComponent implements OnInit {
 
     // listen for search field value changes
     this.resourceFilterCtrl.valueChanges
-      .pipe(takeUntil(this._onDestroy))
+      .pipe(takeUntil(this.onDestroy))
       .subscribe(() => {
         this.filterResources();
       });
@@ -79,6 +83,37 @@ export class AppComponent implements OnInit {
   }
 
   calculate() {
-    console.log(this.singleSelect.value);
+    console.log(
+      this.getRequirements(
+        this.singleSelect.value,
+        parseInt(this.resourceNumberCtrl.value, 10)
+      )
+    );
+  }
+
+  private getRequirements(resource, demand) {
+    const obj: any = {};
+
+    obj.from = this.resources[resource].from;
+    obj.name = resource;
+    if (obj.from === "miner") {
+      delete obj.from;
+      obj.quantity = demand;
+      return obj;
+    } else {
+      obj.quantity = demand / this.resources[resource].rate;
+
+      for (const req of this.resources[resource].require) {
+        if (!("children" in obj)) {
+          obj.children = [];
+        }
+
+        obj.children.push(
+          this.getRequirements(req.item, req.quantity * obj.quantity)
+        );
+      }
+
+      return obj;
+    }
   }
 }
